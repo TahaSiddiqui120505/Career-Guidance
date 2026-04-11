@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 
 class UserRegister(BaseModel):
@@ -70,3 +70,39 @@ class HintRequest(BaseModel):
 class SessionSummaryRequest(BaseModel):
     job_role: str
     qa_pairs: List[dict]
+
+
+# ---------- Adaptive Learning ----------
+
+class DiagnosticGenerateRequest(BaseModel):
+    user_email:       str
+    job_role:         str
+    company:          str
+    experience_level: str = "mid"   # fresher | mid | senior
+
+class DiagnosticEvaluateRequest(BaseModel):
+    user_email:       str
+    job_role:         str
+    company:          str
+    experience_level: str = "mid"
+    qa_pairs:         List[Dict[str, Any]]
+
+class NotesGenerateRequest(BaseModel):
+    user_email: str
+    topic:      str
+    job_role:   str
+    company:    str
+    level:      str = "medium"      # easy | medium | hard
+
+class TestGenerateRequest(BaseModel):
+    user_email:    str
+    topic:         str
+    job_role:      str
+    company:       str
+    num_questions: int = 5
+
+class TestEvaluateRequest(BaseModel):
+    user_email: str
+    topic:      str
+    job_role:   str
+    qa_pairs:   List[Dict[str, Any]]

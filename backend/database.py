@@ -14,6 +14,8 @@ if DB_NAME is None:
 client = MongoClient(MONGO_URL)
 db = client[DB_NAME]
 
-users_collection = db["users"]
-resumes_collection = db["resumes"]
-cover_letters_collection = db["cover_letters"]
+users_collection          = db["users"]
+resumes_collection        = db["resumes"]
+cover_letters_collection  = db["cover_letters"]
+adaptive_profiles_col     = db["adaptive_profiles"]
+adaptive_sessions_col     = db["adaptive_sessions"]
