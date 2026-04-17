@@ -9,8 +9,8 @@ import {
   ArrowLeft, Brain, Play, Clock, Lightbulb, CheckCircle, XCircle,
   AlertCircle, BarChart2, Download, RefreshCw, Star, Trophy,
   ArrowRight, Zap, RotateCcw, Mic, MicOff, Video, VideoOff,
-  BookOpen, Target, TrendingUp, Activity, Volume2, Flame, Shield,
-  FileUp, LayoutTemplate, Calendar
+  BookOpen, Target, Activity, Flame,
+  FileUp, LayoutTemplate
 } from "lucide-react"
 
 const API = `${process.env.REACT_APP_API_URL || "http://127.0.0.1:8000"}/interview`
@@ -318,7 +318,6 @@ export default function InterviewPrep() {
   const resumeFileRef = useRef(null)
 
   // Devil's Advocate state
-  const [devilMode,      setDevilMode]      = useState(false)
   const [devilChallenge, setDevilChallenge] = useState(null)
   const [devilRound,     setDevilRound]     = useState(1)
   const [devilAnswer,    setDevilAnswer]    = useState("")
@@ -347,6 +346,7 @@ export default function InterviewPrep() {
 
   // ── Keyboard shortcuts ──────────────────────────────────────
   useEffect(() => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
     const onKey = (e) => {
       if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return
       if (screen !== "interview") return
