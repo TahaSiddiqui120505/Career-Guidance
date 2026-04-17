@@ -161,7 +161,7 @@ export default function InterviewScheduler() {
   // ── Adaptive functions ──
   const startDiagnostic = async () => {
     if (!adaptRole.trim() || !adaptCompany.trim()) return
-    setLoadDiag(true); setDiagnostic(null); setDiagAnswers({}); setDiagSubmitted(false)
+    setLoadDiag(true); setDiagnostic(null); setDiagAnswers({})
     try {
       const r = await axios.post(`${ADAPT}/diagnostic/generate`, {
         job_role: adaptRole, company: adaptCompany,
@@ -194,7 +194,7 @@ export default function InterviewScheduler() {
       })
       setLearningProfile(r.data.profile)
       setTopicProgress(r.data.topic_progress||{})
-      setDiagSubmitted(true); setAdaptTab("profile")
+      setAdaptTab("profile")
       axios.get(`${ADAPT}/profiles/${userEmail}`)
         .then(r2 => setSavedProfiles(r2.data.profiles||[])).catch(()=>{})
     } catch { alert("Evaluation failed.") }

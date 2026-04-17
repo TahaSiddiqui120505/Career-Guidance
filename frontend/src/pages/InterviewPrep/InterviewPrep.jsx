@@ -10,7 +10,7 @@ import {
   AlertCircle, BarChart2, Download, RefreshCw, Star, Trophy,
   ArrowRight, Zap, RotateCcw, Mic, MicOff, Video, VideoOff,
   BookOpen, Target, Activity, Flame,
-  FileUp, LayoutTemplate
+  FileUp, LayoutTemplate, TrendingUp
 } from "lucide-react"
 
 const API = `${process.env.REACT_APP_API_URL || "http://127.0.0.1:8000"}/interview`
@@ -345,8 +345,8 @@ export default function InterviewPrep() {
   const wordCount = answer.trim().split(/\s+/).filter(Boolean).length
 
   // ── Keyboard shortcuts ──────────────────────────────────────
-  useEffect(() => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
     const onKey = (e) => {
       if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return
       if (screen !== "interview") return

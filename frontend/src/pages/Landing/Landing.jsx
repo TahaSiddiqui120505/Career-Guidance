@@ -248,7 +248,6 @@ export default function Landing() {
   const heroOp  = useTransform(scrollYProgress, [0, 0.25], [1, 0])
 
   useEffect(() => {
-    const id = "lp-css"
     setMounted(true)
 
     const onMove = (e) => {
@@ -532,7 +531,8 @@ export default function Landing() {
           </div>
           <div style={{ display:"flex", gap:28, alignItems:"center" }}>
             {["Privacy","Terms","Contact"].map(l => (
-              <a key={l} className="lp-link" style={{ fontSize:13, color:"var(--muted)", fontFamily:"var(--body)" }}>{l}</a>
+              // eslint-disable-next-line jsx-a11y/anchor-is-valid
+              <a key={l} href="#" className="lp-link" style={{ fontSize:13, color:"var(--muted)", fontFamily:"var(--body)" }}>{l}</a>
             ))}href="#" 
           </div>
           <p style={{ fontSize:13, color:"var(--muted2)" }}>© 2026 SensAI · All rights reserved</p>
