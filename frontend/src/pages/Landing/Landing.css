@@ -1,0 +1,132 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #04050d;
+    --surface:  #080a14;
+    --s2:       #0d0f1d;
+    --border:   rgba(255,255,255,0.07);
+    --border2:  rgba(255,255,255,0.13);
+    --text:     #eaecf5;
+    --muted:    #565b78;
+    --muted2:   #383d56;
+    --accent:   #7c6ffa;
+    --teal:     #34d5c8;
+    --amber:    #f59e0b;
+    --green:    #22c55e;
+    --serif:    'Instrument Serif', serif;
+    --sans:     'Syne', sans-serif;
+    --body:     'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  .lp-page {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    overflow-x: hidden;
+  }
+
+  .lp-page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.032;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .cursor-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: width .2s, height .2s, background .2s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(124,111,250,0.4);
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: transform .12s ease, width .25s, height .25s, border-color .25s;
+  }
+
+  .lp-link {
+    position: relative; color: var(--text); text-decoration: none; cursor: pointer;
+  }
+  .lp-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px;
+    background: var(--accent); transition: width .3s ease;
+  }
+  .lp-link:hover::after { width: 100%; }
+
+  @keyframes lp-marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+  .marquee-track { display: flex; width: max-content; animation: lp-marquee 28s linear infinite; }
+  .marquee-track:hover { animation-play-state: paused; }
+
+  @keyframes lp-orb1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(80px,-60px) scale(1.12)} }
+  @keyframes lp-orb2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-70px,80px) scale(1.08)} }
+  @keyframes lp-orb3 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(40px,30px) scale(1.05)} 66%{transform:translate(-30px,-40px) scale(0.95)} }
+
+  .lp-grid-bg {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+  }
+
+  .lp-hr { height: 1px; background: var(--border); }
+
+  @keyframes lp-fadein { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  .lp-reveal { opacity: 0; animation: lp-fadein .7s ease forwards; }
+
+  .lp-feat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px; position: relative;
+    overflow: hidden; transition: border-color .25s, transform .25s;
+    cursor: default;
+  }
+  .lp-feat-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(124,111,250,0.04) 0%, transparent 60%);
+    opacity: 0; transition: opacity .3s;
+  }
+  .lp-feat-card:hover { border-color: rgba(124,111,250,0.25); transform: translateY(-4px); }
+  .lp-feat-card:hover::before { opacity: 1; }
+
+  .lp-stat-num {
+    font-family: var(--serif); font-size: clamp(42px,6vw,72px);
+    font-weight: 400; line-height: 1; letter-spacing: -2px;
+  }
+
+  .lp-cta-border {
+    background: linear-gradient(135deg, rgba(124,111,250,0.15), rgba(52,213,200,0.08));
+    border: 1px solid rgba(124,111,250,0.2);
+    border-radius: 28px;
+    position: relative; overflow: hidden;
+  }
+  .lp-cta-border::before {
+    content: ''; position: absolute; inset: 0; border-radius: 28px;
+    background: linear-gradient(135deg, rgba(124,111,250,0.08), transparent 50%, rgba(52,213,200,0.05));
+    pointer-events: none;
+  }
+
+  .lp-testi {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px 26px; flex-shrink: 0;
+    width: 320px;
+  }
+
+  .lp-step-line {
+    position: absolute; left: 21px; top: 44px;
+    width: 1px; height: calc(100% + 24px);
+    background: linear-gradient(to bottom, var(--border2), transparent);
+  }

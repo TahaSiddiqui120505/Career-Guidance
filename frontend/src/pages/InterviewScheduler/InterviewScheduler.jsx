@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import axios from "axios"
+import "./InterviewScheduler.css"
 import {
   ArrowLeft, Calendar, CheckCircle, Clock, Brain, ArrowRight,
   ChevronDown, ChevronUp, Target, BookOpen, Zap, Star,
@@ -12,52 +13,6 @@ const API   = "http://127.0.0.1:8000"
 const ADAPT = `${API}/adaptive`
 
 // ── CSS ───────────────────────────────────────────────────────
-const CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  @keyframes sch-spin  { to { transform:rotate(360deg); } }
-  @keyframes sch-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.08)} }
-  @keyframes sch-bar   { from{width:0} to{width:var(--w)} }
-
-  .sch-page    { min-height:100vh; background:#080a12; color:#dde1f0; font-family:'DM Sans',sans-serif; }
-  .sch-topbar  { display:flex; align-items:center; justify-content:space-between; padding:14px 28px; border-bottom:1px solid rgba(255,255,255,0.06); background:rgba(8,10,18,0.95); backdrop-filter:blur(14px); position:sticky; top:0; z-index:10; }
-  .sch-body    { max-width:980px; margin:0 auto; padding:36px 24px 80px; }
-  .sch-tab     { padding:9px 18px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; font-family:'DM Sans',sans-serif; transition:all .2s; }
-  .sch-tab.on  { background:rgba(124,111,250,0.15); border-color:#7c6ffa; color:#a99dfc; }
-  .sch-tab.off { background:transparent; border-color:rgba(255,255,255,0.08); color:#5a6488; }
-  .sch-tab.off:hover { border-color:#7c6ffa; color:#a99dfc; }
-  .sch-inp     { width:100%; padding:13px 16px; background:#1a1d2e; border:1.5px solid #2e3450; border-radius:10px; color:#fff; font-family:'DM Sans',sans-serif; font-size:15px; outline:none; transition:border-color .2s; }
-  .sch-inp:focus { border-color:#7c6ffa; box-shadow:0 0 0 3px rgba(124,111,250,0.12); }
-  .sch-inp::placeholder { color:#4a5070; }
-  .sch-inp:-webkit-autofill { -webkit-box-shadow:0 0 0 1000px #1a1d2e inset !important; -webkit-text-fill-color:#fff !important; }
-  .sch-ta      { resize:vertical; line-height:1.75; min-height:100px; }
-  .sch-btn     { display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 28px; background:linear-gradient(135deg,#5b4fd4,#7c6ffa); border:none; border-radius:12px; color:#fff; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:700; cursor:pointer; transition:opacity .2s; box-shadow:0 4px 24px rgba(124,111,250,0.3); }
-  .sch-btn:hover:not(:disabled) { opacity:.88; }
-  .sch-btn:disabled { opacity:.55; cursor:not-allowed; }
-  .sch-btn.green { background:linear-gradient(135deg,#0f7a5a,#30c97e); box-shadow:0 4px 24px rgba(48,201,126,0.25); }
-  .sch-btn.red   { background:linear-gradient(135deg,#b91c1c,#ef4444); box-shadow:0 4px 24px rgba(239,68,68,0.2); }
-  .sch-card    { background:#0c0e1a; border:1px solid #1e2235; border-radius:16px; padding:22px 24px; }
-  .day-card    { background:#0c0e1a; border:1px solid #1e2235; border-radius:14px; overflow:hidden; margin-bottom:10px; transition:border-color .2s; }
-  .day-card:hover { border-color:rgba(124,111,250,0.25); }
-  .day-header  { display:flex; align-items:center; gap:14px; padding:16px 20px; cursor:pointer; }
-  .task-row    { display:flex; align-items:flex-start; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
-  .task-row:last-child { border-bottom:none; }
-  .task-check  { width:20px; height:20px; border-radius:5px; border:1.5px solid #2e3450; background:#13152a; cursor:pointer; flex-shrink:0; margin-top:1px; display:flex; align-items:center; justify-content:center; transition:all .15s; }
-  .task-check.done { background:#30c97e; border-color:#30c97e; }
-  .progress-bar  { height:7px; border-radius:4px; background:#1e2235; overflow:hidden; }
-  .progress-fill { height:100%; border-radius:4px; animation:sch-bar .8s ease forwards; }
-  .topic-card  { background:#0c0e1a; border:1px solid #1e2235; border-radius:14px; padding:18px 20px; margin-bottom:10px; transition:border-color .2s,transform .2s; cursor:pointer; }
-  .topic-card:hover { border-color:rgba(124,111,250,0.3); transform:translateY(-2px); }
-  .mcq-opt     { width:100%; display:flex; align-items:flex-start; gap:12px; padding:13px 16px; margin-bottom:8px; background:#13152a; border:1.5px solid #2e3450; border-radius:11px; color:#c0c8e0; font-family:'DM Sans',sans-serif; font-size:15px; text-align:left; cursor:pointer; transition:all .18s; outline:none; }
-  .mcq-opt:hover:not(:disabled) { border-color:#7c6ffa; background:rgba(124,111,250,0.08); color:#fff; }
-  .mcq-opt.sel     { border-color:#7c6ffa; background:rgba(124,111,250,0.15); color:#fff; }
-  .mcq-opt.correct { border-color:#30c97e; background:rgba(48,201,126,0.12); color:#b8f5d8; }
-  .mcq-opt.wrong   { border-color:#f05252; background:rgba(240,82,82,0.1);  color:#fca5a5; }
-  .mcq-opt.reveal  { border-color:#30c97e; background:rgba(48,201,126,0.06); color:#b8f5d8; }
-  .badge { display:inline-flex; align-items:center; gap:5px; padding:3px 11px; border-radius:20px; font-size:11.5px; font-weight:700; font-family:'DM Sans',sans-serif; }
-  .spin  { width:16px; height:16px; border:2px solid rgba(255,255,255,0.2); border-top-color:#fff; border-radius:50%; animation:sch-spin .7s linear infinite; display:inline-block; flex-shrink:0; }
-`
-
 // ── Static scheduler data ─────────────────────────────────────
 const TYPE_COLORS = {
   behavioural: { color:"#7c6ffa", bg:"rgba(124,111,250,0.12)", label:"Behavioural", icon:"👥" },
@@ -114,10 +69,7 @@ export default function InterviewScheduler() {
   // ── CSS inject ──
   useEffect(() => {
     const id = "sch-css"
-    if (!document.getElementById(id)) {
-      const el = document.createElement("style"); el.id = id
-      el.textContent = CSS; document.head.appendChild(el)
-    }
+    // CSS loaded via import
   }, [])
 
   // ── Active tab: "scheduler" | "adaptive" ──
@@ -946,4 +898,4 @@ export default function InterviewScheduler() {
       </div>
     </div>
   )
-}
+} 

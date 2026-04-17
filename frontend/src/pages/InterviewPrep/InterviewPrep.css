@@ -1,0 +1,55 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; }
+  @keyframes iv-spin  { to { transform: rotate(360deg); } }
+  @keyframes iv-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.7;transform:scale(1.12)} }
+  @keyframes iv-ripple { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(2.2);opacity:0} }
+  .iv-inp {
+    width:100%; padding:12px 15px;
+    background:#1a1d2e !important; border:1.5px solid #2e3450;
+    border-radius:10px; color:#fff !important;
+    font-family:'DM Sans',sans-serif; font-size:15.5px;
+    outline:none; transition:border-color .2s;
+  }
+  .iv-inp:focus { border-color:#7c6ffa; box-shadow:0 0 0 3px rgba(124,111,250,0.14); }
+  .iv-inp::placeholder { color:#4a5070 !important; }
+  .iv-inp:-webkit-autofill { -webkit-box-shadow:0 0 0 1000px #1a1d2e inset !important; -webkit-text-fill-color:#fff !important; }
+  .iv-ta { resize:vertical; line-height:1.75; min-height:140px; }
+  .mcq-opt {
+    width:100%; display:flex; align-items:flex-start; gap:14px;
+    padding:15px 18px; margin-bottom:10px;
+    background:#13152a; border:1.5px solid #2e3450;
+    border-radius:13px; color:#c0c8e0;
+    font-family:'DM Sans',sans-serif; font-size:16px;
+    text-align:left; cursor:pointer; transition:all .18s; outline:none;
+  }
+  .mcq-opt:hover:not(:disabled)  { border-color:#7c6ffa; background:rgba(124,111,250,0.08); color:#fff; }
+  .mcq-opt.selected { border-color:#7c6ffa; background:rgba(124,111,250,0.15); color:#fff; }
+  .mcq-opt.correct  { border-color:#30c97e; background:rgba(48,201,126,0.13);  color:#b8f5d8; }
+  .mcq-opt.wrong    { border-color:#f05252; background:rgba(240,82,82,0.11);   color:#fca5a5; }
+  .mcq-opt.reveal   { border-color:#30c97e; background:rgba(48,201,126,0.07);  color:#b8f5d8; }
+  .mcq-letter {
+    width:34px; height:34px; border-radius:9px; flex-shrink:0;
+    background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:14px; color:#7a8096; transition:all .18s;
+  }
+  .mcq-opt.selected .mcq-letter { background:#7c6ffa; border-color:#7c6ffa; color:#fff; }
+  .mcq-opt.correct  .mcq-letter { background:#30c97e; border-color:#30c97e; color:#fff; }
+  .mcq-opt.wrong    .mcq-letter { background:#f05252; border-color:#f05252; color:#fff; }
+  .mcq-opt.reveal   .mcq-letter { background:#30c97e; border-color:#30c97e; color:#fff; }
+  .score-bar  { height:7px; border-radius:4px; background:#1e2235; overflow:hidden; }
+  .score-fill { height:100%; border-radius:4px; transition:width 1.1s ease; }
+  .star-seg   { flex:1; height:5px; border-radius:3px; transition:background .3s; }
+  .mic-ring   { position:absolute; inset:-6px; border-radius:50%; border:2px solid #f05252; animation:iv-ripple 1.2s ease-out infinite; }
+  .tab-btn    { padding:9px 18px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; font-family:'DM Sans',sans-serif; transition:all .2s; }
+  .tab-btn.active   { background:rgba(124,111,250,0.15); border-color:#7c6ffa; color:#a99dfc; }
+  .tab-btn.inactive { background:transparent; border-color:rgba(255,255,255,0.08); color:#5a6488; }
+  .tab-btn.inactive:hover { border-color:#7c6ffa; color:#a99dfc; }
+  @keyframes iv-flame { 0%,100%{transform:scaleY(1) rotate(-1deg)} 50%{transform:scaleY(1.08) rotate(1deg)} }
+  .devil-toggle { display:inline-flex; align-items:center; border-radius:9px; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .2s; border:1.5px solid; }
+  .devil-toggle.off { background:rgba(255,255,255,0.03); border-color:rgba(255,255,255,0.1); color:#5a6488; }
+  .devil-toggle.on  { background:rgba(240,82,82,0.1);    border-color:rgba(240,82,82,0.4);  color:#f05252; }
+  .devil-toggle:disabled { opacity:0.6; cursor:not-allowed; }
+  #resume-gaps-report { font-family:'DM Sans',sans-serif !important; }
+  #resume-gaps-report * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }

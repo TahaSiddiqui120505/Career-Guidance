@@ -1,0 +1,54 @@
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap');
+  * { box-sizing: border-box; }
+
+  .cl-inp {
+    width: 100%;
+    padding: 11px 13px;
+    background: #1a1d2e !important;
+    border: 1.5px solid #2e3450;
+    border-radius: 9px;
+    color: #ffffff !important;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px !important;
+    font-weight: 500;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color .2s, box-shadow .2s;
+    caret-color: #7c6ffa;
+  }
+  .cl-inp:focus {
+    border-color: #7c6ffa !important;
+    box-shadow: 0 0 0 3px rgba(124,111,250,0.15);
+  }
+  .cl-inp::placeholder {
+    color: #5a6080 !important;
+    font-weight: 400;
+  }
+  .cl-ta {
+    resize: vertical;
+    line-height: 1.7;
+    min-height: 90px;
+  }
+
+  .cl-inp:-webkit-autofill,
+  .cl-inp:-webkit-autofill:hover,
+  .cl-inp:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #1a1d2e inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff;
+    border: 1.5px solid #2e3450 !important;
+  }
+
+  .cl-para {
+    display: block;
+    outline: none;
+    border-radius: 4px;
+    padding: 3px 5px;
+    margin: 0 -5px;
+    cursor: text;
+    transition: background .15s, box-shadow .15s;
+  }
+  .cl-para:hover { background: rgba(124,111,250,0.07); }
+  .cl-para:focus { background: rgba(124,111,250,0.12); box-shadow: 0 0 0 2px rgba(124,111,250,0.3); }
+
+  @keyframes spin { to { transform: rotate(360deg); } }

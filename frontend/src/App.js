@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom"
 
-import Landing             from "./pages/Landing"
-import Login               from "./pages/Login"
-import Register            from "./pages/Register"
-import Dashboard           from "./pages/Dashboard"
-import ResumeBuilder       from "./pages/ResumeBuilder"
-import CoverLetter         from "./pages/CoverLetter"
-import InterviewPrep       from "./pages/InterviewPrep"
-import InterviewScheduler  from "./pages/InterviewScheduler"
-import IndustryInsights    from "./pages/IndustryInsights"
+import Landing             from "./pages/Landing/Landing"
+import Login               from "./pages/Login/Login"
+import Register            from "./pages/Register/Register"
+import Dashboard           from "./pages/Dashboard/Dashboard"
+import ResumeBuilder       from "./pages/ResumeBuilder/ResumeBuilder"
+import CoverLetter         from "./pages/CoverLetter/CoverLetter"
+import InterviewPrep       from "./pages/InterviewPrep/InterviewPrep"
+import InterviewScheduler  from "./pages/InterviewScheduler/InterviewScheduler"
+import IndustryInsights    from "./pages/IndustryInsights/IndustryInsights"
 
 export default function App() {
   return (
