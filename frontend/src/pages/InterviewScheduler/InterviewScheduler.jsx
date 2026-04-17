@@ -4,9 +4,9 @@ import { Link } from "react-router-dom"
 import axios from "axios"
 import "./InterviewScheduler.css"
 import {
-  ArrowLeft, Calendar, CheckCircle, Clock, Brain, ArrowRight,
+  ArrowLeft, Calendar, CheckCircle, Clock, Brain,
   ChevronDown, ChevronUp, Target, BookOpen, Zap, Star,
-  TrendingUp, Award, RefreshCw, Play, Lock, AlertCircle
+  Award, RefreshCw, Play, AlertCircle
 } from "lucide-react"
 
 const API   = "http://127.0.0.1:8000"
@@ -68,7 +68,6 @@ const priorityMeta = {
 export default function InterviewScheduler() {
   // ── CSS inject ──
   useEffect(() => {
-    const id = "sch-css"
     // CSS loaded via import
   }, [])
 
@@ -92,7 +91,6 @@ export default function InterviewScheduler() {
   const [adaptExp,       setAdaptExp]       = useState("mid")
   const [diagnostic,     setDiagnostic]     = useState(null)
   const [diagAnswers,    setDiagAnswers]    = useState({})
-  const [diagSubmitted,  setDiagSubmitted]  = useState(false)
   const [learningProfile,setLearningProfile]= useState(null)
   const [topicProgress,  setTopicProgress]  = useState({})
   const [activeTopic,    setActiveTopic]    = useState(null)

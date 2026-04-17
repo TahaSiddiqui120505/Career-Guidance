@@ -226,7 +226,7 @@ const TplFaang = ({ name, email, degree, editable, onUpdate, ...rest }) => (
       </h1>
       <p style={{ fontSize: 12, color: "#444", marginTop: 6 }}>
         {editable
-          ? <><Editable value={email} onChange={v => onUpdate("email", v)} style={{ fontSize: 12 }} />  //  <Editable value={degree} onChange={v => onUpdate("degree", v)} style={{ fontSize: 12 }} /></>
+          ? <><Editable value={email} onChange={v => onUpdate("email", v)} style={{ fontSize: 12 }} /> {" // "} <Editable value={degree} onChange={v => onUpdate("degree", v)} style={{ fontSize: 12 }} /></>
           : [email, degree].filter(Boolean).join("  //  ")}
       </p>
       <div style={{ height: 1, background: "#ddd", margin: "14px 0" }} />

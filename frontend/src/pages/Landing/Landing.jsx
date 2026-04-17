@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { Link } from "react-router-dom"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
@@ -241,7 +241,6 @@ function TechCanvas() {
 export default function Landing() {
   const cursorDotRef  = useRef(null)
   const cursorRingRef = useRef(null)
-  const heroRef       = useRef(null)
   const [mounted, setMounted] = useState(false)
 
   const { scrollYProgress } = useScroll()
@@ -250,7 +249,6 @@ export default function Landing() {
 
   useEffect(() => {
     const id = "lp-css"
-    // CSS loaded via import
     setMounted(true)
 
     const onMove = (e) => {
@@ -535,7 +533,7 @@ export default function Landing() {
           <div style={{ display:"flex", gap:28, alignItems:"center" }}>
             {["Privacy","Terms","Contact"].map(l => (
               <a key={l} className="lp-link" style={{ fontSize:13, color:"var(--muted)", fontFamily:"var(--body)" }}>{l}</a>
-            ))}
+            ))}href="#" 
           </div>
           <p style={{ fontSize:13, color:"var(--muted2)" }}>© 2026 SensAI · All rights reserved</p>
         </div>
