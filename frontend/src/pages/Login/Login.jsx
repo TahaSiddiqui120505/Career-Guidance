@@ -30,7 +30,7 @@ export default function Login() {
     if (!email.trim() || !password) { setError("Please fill in both fields."); return }
     setLoading(true); setError("")
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL || "http://127.0.0.1:8000"}/auth/login`, { email, password })
+      const res = await axios.post(`${(process.env.REACT_APP_API_URL || "http://127.0.0.1:8000").replace(/\/+$/, "")}/auth/login`, { email, password })
       localStorage.setItem("token",     res.data.token)
       localStorage.setItem("userName",  res.data.user?.name || email.split("@")[0])
       localStorage.setItem("userEmail", email)

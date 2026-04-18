@@ -59,7 +59,7 @@ export default function Register() {
     if (password.length < 6) { setError("Password must be at least 6 characters."); return }
     setLoading(true); setError("")
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL || "http://127.0.0.1:8000"}/auth/register`, { name, email, password })
+      const res = await axios.post(`${(process.env.REACT_APP_API_URL || "http://127.0.0.1:8000").replace(/\/+$/, "")}/auth/register`, { name, email, password })
       localStorage.setItem("token",     res.data.token)
       localStorage.setItem("userName",  res.data.user?.name || name)
       localStorage.setItem("userEmail", email)

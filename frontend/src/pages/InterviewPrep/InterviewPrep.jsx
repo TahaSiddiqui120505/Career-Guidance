@@ -13,7 +13,7 @@ import {
   FileUp, LayoutTemplate, TrendingUp, ArrowRight
 } from "lucide-react"
 
-const API = `${process.env.REACT_APP_API_URL || "http://127.0.0.1:8000"}/interview`
+const API = `${(process.env.REACT_APP_API_URL || "http://127.0.0.1:8000").replace(/\/+$/, "")}/interview`
 
 const Q_TYPES  = ["behavioural", "technical", "case", "mcq"]
 const DIFFS    = ["easy", "medium", "hard"]
