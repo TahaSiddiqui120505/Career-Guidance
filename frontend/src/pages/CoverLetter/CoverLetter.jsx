@@ -90,7 +90,7 @@ export default function CoverLetter() {
     if (!jobRole.trim() || !industry.trim()) { showToast("Job Role and Industry are required."); return }
     setLoading(true)
     try {
-      const res = await axios.post("http://127.0.0.1:8000/cover-letter/generate", {
+      const res = await axios.post(`${(process.env.REACT_APP_API_URL || "http://127.0.0.1:8000").replace(/\/+$/, "")}/cover-letter/generate`, {
         full_name: fullName, email, phone, linkedin,
         hiring_manager: hiringManager, job_role: jobRole,
         company_name: companyName, industry,

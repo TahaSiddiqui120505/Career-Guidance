@@ -476,7 +476,7 @@ export default function ResumeBuilder() {
     if (!name.trim()) { toast("Please enter your name first."); return }
     setLoadingGen(true)
     try {
-      await axios.post("http://127.0.0.1:8000/resume/generate", { name, email, degree, summary, skills, experience, projects })
+      await axios.post(`${(process.env.REACT_APP_API_URL || "http://127.0.0.1:8000").replace(/\/+$/, "")}/resume/generate`, { name, email, degree, summary, skills, experience, projects })
       setResume(true)
       toast("Resume generated! Click ✎ Edit to tweak text directly.")
     } catch {
@@ -490,7 +490,7 @@ export default function ResumeBuilder() {
     setLoadingAI(true)
     toast("AI is enhancing your resume…")
     try {
-      const res = await axios.post("http://127.0.0.1:8000/resume/enhance", { name, email, degree, summary, skills, experience, projects })
+      const res = await axios.post(`${(process.env.REACT_APP_API_URL || "http://127.0.0.1:8000").replace(/\/+$/, "")}/resume/enhance`, { name, email, degree, summary, skills, experience, projects })
       const d = res.data
       if (d.error) { toast("Enhancement failed: " + d.error); return }
       if (d.summary)    setSummary(stripBullets(d.summary))
@@ -513,7 +513,7 @@ export default function ResumeBuilder() {
     if (!name.trim()) { toast("Generate your resume first."); return }
     setLoadingScore(true)
     try {
-      const res = await axios.post("http://127.0.0.1:8000/resume/score", { name, email, degree, summary, skills, experience, projects })
+      const res = await axios.post(`${(process.env.REACT_APP_API_URL || "http://127.0.0.1:8000").replace(/\/+$/, "")}/resume/score`, { name, email, degree, summary, skills, experience, projects })
       setScoreData(res.data)
     } catch {
       toast("Scoring failed — check backend.")
