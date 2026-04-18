@@ -14,17 +14,19 @@ load_dotenv()
 
 app = FastAPI(title="SensAI API", version="2.0.0")
 
-# Read allowed origins from env, fallback to allow all in dev
+# Read allowed origins from env
 raw_origins = os.getenv("CORS_ORIGINS", "*")
 if raw_origins == "*":
     origins = ["*"]
+    allow_creds = False   # credentials=True is incompatible with wildcard origin
 else:
     origins = [o.strip() for o in raw_origins.split(",")]
+    allow_creds = True
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials=True,
+    allow_credentials=allow_creds,
     allow_methods=["*"],
     allow_headers=["*"],
 )

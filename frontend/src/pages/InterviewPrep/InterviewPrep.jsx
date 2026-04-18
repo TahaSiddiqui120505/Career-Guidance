@@ -8,9 +8,9 @@ import "./InterviewPrep.css"
 import {
   ArrowLeft, Brain, Play, Clock, Lightbulb, CheckCircle, XCircle,
   AlertCircle, BarChart2, Download, RefreshCw, Star, Trophy,
-  ArrowRight, Zap, RotateCcw, Mic, MicOff, Video, VideoOff,
+  Zap, RotateCcw, Mic, MicOff, Video, VideoOff,
   BookOpen, Target, Activity, Flame,
-  FileUp, LayoutTemplate, TrendingUp
+  FileUp, LayoutTemplate, TrendingUp, ArrowRight
 } from "lucide-react"
 
 const API = `${process.env.REACT_APP_API_URL || "http://127.0.0.1:8000"}/interview`
@@ -37,21 +37,21 @@ const FRAMEWORKS = {
   behavioural: [
     { id:"star",  label:"STAR",  desc:"Situation · Task · Action · Result",
       template:"SITUATION:\n(Set the scene — where, when, what was happening)\n\nTASK:\n(What was your specific responsibility or goal)\n\nACTION:\n(Exactly what YOU did — use 'I', not 'we')\n\nRESULT:\n(Quantify the outcome — numbers, impact, what changed)" },
-    { id:"soar",  label:"SOAR",  desc:"Situation · Obstacle · Action · Result",
+    { label:"SOAR",  desc:"Situation · Obstacle · Action · Result",
       template:"SITUATION:\n(Context and background)\n\nOBSTACLE:\n(The specific challenge or problem you faced)\n\nACTION:\n(Steps you personally took to overcome it)\n\nRESULT:\n(What happened — include numbers if possible)" },
-    { id:"carl",  label:"CARL",  desc:"Challenge · Action · Result · Learning",
+    { label:"CARL",  desc:"Challenge · Action · Result · Learning",
       template:"CHALLENGE:\n(What was the difficulty or problem)\n\nACTION:\n(What did you do about it)\n\nRESULT:\n(What was the outcome)\n\nLEARNING:\n(What did you take away from this experience)" },
   ],
   technical: [
-    { id:"pse",   label:"PSE",   desc:"Problem · Solution · Evaluation",
+    { label:"PSE",   desc:"Problem · Solution · Evaluation",
       template:"PROBLEM:\n(Define the technical problem precisely)\n\nSOLUTION:\n(Your approach — tools, methods, reasoning)\n\nEVALUATION:\n(Trade-offs considered, why this was the best approach, limitations)" },
-    { id:"deep",  label:"Deep Dive", desc:"Concept · Mechanism · Example · Edge cases",
+    { label:"Deep Dive", desc:"Concept · Mechanism · Example · Edge cases",
       template:"CONCEPT:\n(Define the concept in one clear sentence)\n\nMECHANISM:\n(How it works under the hood)\n\nEXAMPLE:\n(Concrete real-world example)\n\nEDGE CASES:\n(When does it break down or behave unexpectedly)" },
   ],
   case: [
-    { id:"mece",  label:"MECE",  desc:"Mutually Exclusive · Collectively Exhaustive",
+    { label:"MECE",  desc:"Mutually Exclusive · Collectively Exhaustive",
       template:"CLARIFY:\n(Restate the problem in your own words, ask 2-3 clarifying questions)\n\nSTRUCTURE:\n(List your MECE buckets — no overlaps, no gaps)\n\nANALYSIS:\n(Work through each bucket with data/logic)\n\nRECOMMENDATION:\n(Clear answer with 2-3 supporting reasons)" },
-    { id:"4p",    label:"4Ps",   desc:"Product · Price · Place · Promotion",
+    { label:"4Ps",   desc:"Product · Price · Place · Promotion",
       template:"PRODUCT:\n(What is being sold, its features, differentiation)\n\nPRICE:\n(Pricing strategy, positioning, margins)\n\nPLACE:\n(Distribution channels, geography, reach)\n\nPROMOTION:\n(Marketing, messaging, customer acquisition)" },
   ],
 }

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { Link } from "react-router-dom"
-import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, ArrowRight } from "lucide-react"
 import "./Landing.css"
 
 // ── Global styles injected once ──────────────────────────────
@@ -244,8 +244,8 @@ export default function Landing() {
   const [mounted, setMounted] = useState(false)
 
   const { scrollYProgress } = useScroll()
-  const heroY   = useTransform(scrollYProgress, [0, 0.3], [0, -80])
-  const heroOp  = useTransform(scrollYProgress, [0, 0.25], [1, 0])
+  const heroY = useTransform(scrollYProgress, [0, 0.3], [0, -80])
+  const heroOp = useTransform(scrollYProgress, [0, 0.25], [1, 0])
 
   useEffect(() => {
     setMounted(true)
@@ -531,9 +531,8 @@ export default function Landing() {
           </div>
           <div style={{ display:"flex", gap:28, alignItems:"center" }}>
             {["Privacy","Terms","Contact"].map(l => (
-              // eslint-disable-next-line jsx-a11y/anchor-is-valid
-              <a key={l} href="#" className="lp-link" style={{ fontSize:13, color:"var(--muted)", fontFamily:"var(--body)" }}>{l}</a>
-            ))}href="#" 
+              <button key={l} onClick={() => {}} className="lp-link" style={{ fontSize:13, color:"var(--muted)", fontFamily:"var(--body)", background:"none", border:"none", cursor:"pointer", padding:0 }}>{l}</button>
+            ))} 
           </div>
           <p style={{ fontSize:13, color:"var(--muted2)" }}>© 2026 SensAI · All rights reserved</p>
         </div>
